@@ -14,7 +14,7 @@ export function CrisisBanner({ className, dismissible = true }: { className?: st
     <div
       className={cn(
         "fixed bottom-0 left-0 right-0 z-50 border-t border-destructive/30 bg-destructive/10 px-4 py-3 shadow-lg",
-        "md:static md:border md:rounded-lg md:shadow-none md:bg-destructive/5 md:p-4",
+        "md:static md:border md:shadow-none md:bg-destructive/5 md:p-4",
         className
       )}
       role="alert"
@@ -33,7 +33,7 @@ export function CrisisBanner({ className, dismissible = true }: { className?: st
         <div className="flex flex-col md:flex-row items-center gap-3">
           <a
             href="tel:8009112000"
-            className="flex items-center gap-2 bg-destructive text-destructive-foreground px-4 py-2 rounded-lg font-medium hover:bg-destructive/90 transition-colors"
+            className="flex items-center gap-2 bg-destructive text-destructive-foreground px-4 py-2 font-medium hover:bg-destructive/90 transition-colors"
           >
             <Phone className="h-5 w-5" aria-hidden="true" />
             <span>800 911 2000</span>

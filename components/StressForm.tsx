@@ -183,7 +183,6 @@ export function StressForm() {
               {currentQuestion.id === 'horas_sueno' && (
                 <div className="space-y-4">
                   <Slider
-                    {...register('horas_sueno')}
                     min={currentQuestion.min}
                     max={currentQuestion.max}
                     step={currentQuestion.step}
@@ -193,11 +192,11 @@ export function StressForm() {
                   />
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>{currentQuestion.min}h</span>
-                    <span className="font-semibold text-foreground">{watchedValues.horas_sueno}h</span>
+                    <span className="font-semibold text-foreground">{Number(watchedValues.horas_sueno ?? currentQuestion.min)}h</span>
                     <span>{currentQuestion.max}h</span>
                   </div>
                   {errors.horas_sueno && (
-                    <p className="text-sm text-destructive" role="alert">{errors.horas_sueno.message}</p>
+                    <p className="text-sm text-destructive error-message" role="alert" aria-live="polite">{errors.horas_sueno.message}</p>
                   )}
                 </div>
               )}
@@ -206,7 +205,6 @@ export function StressForm() {
               {currentQuestion.id === 'horas_estudio_semana' && (
                 <div className="space-y-4">
                   <Slider
-                    {...register('horas_estudio_semana')}
                     min={currentQuestion.min}
                     max={currentQuestion.max}
                     step={currentQuestion.step}
@@ -216,11 +214,11 @@ export function StressForm() {
                   />
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>{currentQuestion.min}h</span>
-                    <span className="font-semibold text-foreground">{watchedValues.horas_estudio_semana}h</span>
+                    <span className="font-semibold text-foreground">{Number(watchedValues.horas_estudio_semana ?? currentQuestion.min)}h</span>
                     <span>{currentQuestion.max}h</span>
                   </div>
                   {errors.horas_estudio_semana && (
-                    <p className="text-sm text-destructive" role="alert">{errors.horas_estudio_semana.message}</p>
+                    <p className="text-sm text-destructive error-message" role="alert" aria-live="polite">{errors.horas_estudio_semana.message}</p>
                   )}
                 </div>
               )}
@@ -229,25 +227,20 @@ export function StressForm() {
               {currentQuestion.id === 'apoyo_social' && (
                 <div className="space-y-3">
                   <RadioGroup
-                    {...register('apoyo_social')}
                     onValueChange={(v) => setValue('apoyo_social', v as EvaluacionFormData['apoyo_social'])}
                     value={watchedValues.apoyo_social}
                   >
                     {APOYO_SOCIAL_OPTIONS.map((option) => (
-                      <label
-                        key={option.value}
-                        className="flex items-center space-x-3 p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
-                      >
-                        <RadioGroupItem value={option.value} />
+                      <RadioGroupItem key={option.value} value={option.value} className="p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors">
                         <div className="flex-1 text-left">
                           <div className="font-medium">{option.label}</div>
                           <div className="text-sm text-muted-foreground">{option.description}</div>
                         </div>
-                      </label>
+                      </RadioGroupItem>
                     ))}
                   </RadioGroup>
                   {errors.apoyo_social && (
-                    <p className="text-sm text-destructive" role="alert">{errors.apoyo_social.message}</p>
+                    <p className="text-sm text-destructive error-message" role="alert" aria-live="polite">{errors.apoyo_social.message}</p>
                   )}
                 </div>
               )}
@@ -256,7 +249,6 @@ export function StressForm() {
               {currentQuestion.id === 'presion_academica' && (
                 <div className="space-y-4">
                   <Slider
-                    {...register('presion_academica')}
                     min={currentQuestion.min}
                     max={currentQuestion.max}
                     step={currentQuestion.step}
@@ -266,11 +258,11 @@ export function StressForm() {
                   />
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>{currentQuestion.min}</span>
-                    <span className="font-semibold text-foreground">{watchedValues.presion_academica}</span>
+                    <span className="font-semibold text-foreground">{Number(watchedValues.presion_academica ?? currentQuestion.min)}</span>
                     <span>{currentQuestion.max}</span>
                   </div>
                   {errors.presion_academica && (
-                    <p className="text-sm text-destructive" role="alert">{errors.presion_academica.message}</p>
+                    <p className="text-sm text-destructive error-message" role="alert" aria-live="polite">{errors.presion_academica.message}</p>
                   )}
                 </div>
               )}
@@ -279,25 +271,20 @@ export function StressForm() {
               {currentQuestion.id === 'extracurriculares' && (
                 <div className="space-y-3">
                   <RadioGroup
-                    {...register('extracurriculares')}
                     onValueChange={(v) => setValue('extracurriculares', v as EvaluacionFormData['extracurriculares'])}
                     value={watchedValues.extracurriculares}
                   >
                     {EXTRACURRICULAR_OPTIONS.map((option) => (
-                      <label
-                        key={option.value}
-                        className="flex items-center space-x-3 p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
-                      >
-                        <RadioGroupItem value={option.value} />
+                      <RadioGroupItem key={option.value} value={option.value} className="p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors">
                         <div className="flex-1 text-left">
                           <div className="font-medium">{option.label}</div>
                           <div className="text-sm text-muted-foreground">{option.description}</div>
                         </div>
-                      </label>
+                      </RadioGroupItem>
                     ))}
                   </RadioGroup>
                   {errors.extracurriculares && (
-                    <p className="text-sm text-destructive" role="alert">{errors.extracurriculares.message}</p>
+                    <p className="text-sm text-destructive error-message" role="alert" aria-live="polite">{errors.extracurriculares.message}</p>
                   )}
                 </div>
               )}
@@ -306,7 +293,6 @@ export function StressForm() {
               {currentQuestion.id === 'promedio_0a10' && (
                 <div className="space-y-4">
                   <Slider
-                    {...register('promedio_0a10')}
                     min={currentQuestion.min}
                     max={currentQuestion.max}
                     step={currentQuestion.step}
@@ -316,14 +302,16 @@ export function StressForm() {
                   />
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>{currentQuestion.min}</span>
-                    <span className="font-semibold text-foreground">{watchedValues.promedio_0a10.toFixed(1)}</span>
+                    <span className="font-semibold text-foreground">
+                      {(Number(watchedValues.promedio_0a10 ?? currentQuestion.min)).toFixed(1)}
+                    </span>
                     <span>{currentQuestion.max}</span>
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    Valor para el modelo: {(watchedValues.promedio_0a10 * 10).toFixed(0)} (×10)
+                    Valor para el modelo: {(Number(watchedValues.promedio_0a10 ?? currentQuestion.min) * 10).toFixed(0)} (×10)
                   </p>
                   {errors.promedio_0a10 && (
-                    <p className="text-sm text-destructive" role="alert">{errors.promedio_0a10.message}</p>
+                    <p className="text-sm text-destructive error-message" role="alert" aria-live="polite">{errors.promedio_0a10.message}</p>
                   )}
                 </div>
               )}

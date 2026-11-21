@@ -130,4 +130,72 @@
   html {
     @apply font-sans;
   }
+
+  /* Modern Web Guidance: Accessible form validation with :user-invalid */
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/:user-invalid */
+  :is(input, select, textarea):user-invalid {
+    @apply border-destructive bg-destructive/5;
+  }
+
+  :is(input, select, textarea):user-invalid + .error-message,
+  :is(input, select, textarea):user-invalid ~ .error-message {
+    @apply block;
+  }
+
+  /* Fallback for browsers without :user-invalid support */
+  :is(input, select, textarea).user-invalid-fallback {
+    @apply border-destructive bg-destructive/5;
+  }
+
+  .user-invalid-fallback + .error-message,
+  .user-invalid-fallback ~ .error-message {
+    @apply block;
+  }
+
+  /* Visually hidden utility for accessible live regions */
+  /* https://www.w3.org/WAI/WCAG21/Techniques/css/C7.html */
+  .visually-hidden:where(:not(:focus-within, :active)) {
+    position: absolute !important;
+    clip-path: inset(50%) !important;
+    overflow: hidden !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Focus visible improvements */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Ensure form controls have minimum touch target size */
+  @media (pointer: coarse) {
+    input, select, textarea, button, [role="button"], [role="slider"] {
+      min-height: 48px;
+      min-width: 48px;
+    }
+  }
+
+  /* Prevent iOS zoom on focus for font-size >= 16px */
+  input, select, textarea {
+    @apply text-base;
+    font-size: max(1rem, 1em);
+  }
+
+  /* Standardized container spacing utilities */
+  .container-main {
+    @apply max-w-6xl mx-auto px-4;
+  }
+  .container-narrow {
+    @apply max-w-2xl mx-auto px-4;
+  }
+  .section-spacing {
+    @apply py-20;
+  }
+  .card-content-spacing {
+    @apply p-6;
+  }
 }
