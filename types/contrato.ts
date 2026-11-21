@@ -69,16 +69,16 @@ export interface StressLevelConfig {
   rutas: string[];
 }
 
-// Configuración de rutas por nivel (placeholders)
+// Configuración de actividades por nivel (presentadas como acción inmediata según el resultado)
 export const STRESS_LEVEL_CONFIG: Record<StressLevel, StressLevelConfig> = {
   bajo: {
     id: 0,
     etiqueta: 'bajo',
     mensaje: 'Tus respuestas indican un nivel de estrés bajo. Sigue cuidando tus hábitos.',
     rutas: [
-      'Sigue así',
-      'Conoce más',
-      'Técnicas de estudio',
+      'Lectura: 7 Hábitos de estudiantes altamente efectivos',
+      'Checklist: Revisión semanal de hábitos',
+      'Plantilla: Planificador semanal preventivo',
     ],
   },
   medio: {
@@ -86,17 +86,19 @@ export const STRESS_LEVEL_CONFIG: Record<StressLevel, StressLevelConfig> = {
     etiqueta: 'medio',
     mensaje: 'Tus respuestas indican un nivel de estrés medio. Revisa los factores señalados.',
     rutas: [
-      'Técnicas de estudio',
-      'Manejo de ansiedad',
-      'Disciplina para estudiar',
+      'Taller: Matriz de Eisenhower + Time Blocking',
+      'Guía: Regla 1-3-5 para prioridades diarias',
+      'Plantilla: Planificador semanal con bloques de tiempo',
     ],
   },
   alto: {
     id: 2,
     etiqueta: 'alto',
-    mensaje: 'Tus respuestas indican un nivel de estrés alto. Te recomendamos acercarte al área de orientación de tu escuela.',
+    mensaje: 'Tus respuestas indican un nivel de estrés alto. Te recomendamos acceder a ayuda profesional cuanto antes.',
     rutas: [
-      'Consulta a un experto',
+      'Guía: Primeros pasos para buscar ayuda profesional hoy',
+      'Llamar 800 911 2000 (Línea de la Vida, 24/7)',
+      'Buscar psicólogo / orientador escolar cercano',
     ],
   },
 };

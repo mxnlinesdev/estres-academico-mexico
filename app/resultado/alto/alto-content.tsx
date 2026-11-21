@@ -6,7 +6,7 @@ import { ResultCard } from "@/components/ResultCard"
 import { CrisisBanner } from "@/components/CrisisBanner"
 import { CurrentDate } from "@/components/CurrentDate"
 import { PredictResponse } from "@/types/contrato"
-import { RiArrowLeftLine as ArrowLeft, RiBrainLine as Brain, RiAlertLine as AlertCircle, RiPhoneLine as Phone, RiShieldLine as Shield, RiUserReceivedLine as UserCheck } from "@remixicon/react"
+import { RiArrowLeftLine as ArrowLeft, RiBrainLine as Brain, RiAlertLine as AlertCircle, RiPhoneLine as Phone, RiShieldLine as Shield, RiUserReceivedLine as UserCheck, RiFileTextLine as FileText, RiMapPinLine as MapPin, RiHeartLine as Heart, RiCheckLine as Check } from "@remixicon/react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
@@ -135,24 +135,99 @@ export function ResultadoAltoContent({ searchParams }: PageProps) {
           </CardContent>
         </Card>
 
-        <Card className="mt-10 border-destructive/20">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <AlertCircle className="h-5 w-5 text-destructive" />
-              Próximos pasos recomendados
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3 text-sm">
-            <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
-              <li><strong>Contacta ayuda profesional HOY</strong> (línea de crisis o psicólogo)</li>
-              <li>Habla con alguien de confianza (familia, amigo, tutor)</li>
-              <li>Acude al área de orientación/psicología de tu escuela</li>
-              <li>Evita aislarte; mantén contacto social mínimo diario</li>
-              <li>Prioriza sueño y alimentación básica</li>
-              <li>No tomes decisiones importantes en este estado</li>
-            </ol>
-          </CardContent>
-        </Card>
+        {/* Próximos pasos recomendados con recursos disponibles */}
+        <section className="mt-10 space-y-4">
+          <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+            <AlertCircle className="h-5 w-5 text-destructive" />
+            Próximos pasos recomendados
+          </h2>
+          
+          <div className="space-y-3">
+            <Link href="/recursos/guias-ayuda/primeros-pasos-ayuda-profesional" className="block">
+              <Card className="hover:shadow-md transition-shadow border-destructive/30 bg-destructive/5 group">
+                <CardContent className="p-4 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center">
+                      <Heart className="h-5 w-5 text-destructive" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground group-hover:text-destructive transition-colors">
+                        Guía: Primeros pasos para buscar ayuda profesional hoy
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Guía paso a paso: reconoce la señal, contacta líneas de crisis, comparte con alguien de confianza, acude a tu institución
+                      </p>
+                    </div>
+                  </div>
+                  <Check className="h-5 w-5 text-destructive opacity-0 group-hover:opacity-100 transition-opacity" />
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="/recursos/guias-ayuda/llamar-800-911-2000" className="block">
+              <Card className="hover:shadow-md transition-shadow border-destructive/30 bg-destructive/5 group">
+                <CardContent className="p-4 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center">
+                      <Phone className="h-5 w-5 text-destructive" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground group-hover:text-destructive transition-colors">
+                        Guía: Llamar al 800 911 2000 (Línea de la Vida)
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Información sobre la línea nacional 24/7, gratuita y confidencial. Qué esperar al llamar
+                      </p>
+                    </div>
+                  </div>
+                  <Check className="h-5 w-5 text-destructive opacity-0 group-hover:opacity-100 transition-opacity" />
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="/recursos/guias-ayuda/buscar-psicologo-orientador" className="block">
+              <Card className="hover:shadow-md transition-shadow border-destructive/30 bg-destructive/5 group">
+                <CardContent className="p-4 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center">
+                      <MapPin className="h-5 w-5 text-destructive" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground group-hover:text-destructive transition-colors">
+                        Guía: Buscar psicólogo u orientador
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Cómo encontrar ayuda profesional: directorios públicos, seguro médico, clínicas universitarias, opciones online
+                      </p>
+                    </div>
+                  </div>
+                  <Check className="h-5 w-5 text-destructive opacity-0 group-hover:opacity-100 transition-opacity" />
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="/recursos/guias-ayuda/primeros-pasos-ayuda-profesional" className="block">
+              <Card className="hover:shadow-md transition-shadow border-destructive/30 bg-destructive/5 group">
+                <CardContent className="p-4 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center">
+                      <FileText className="h-5 w-5 text-destructive" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground group-hover:text-destructive transition-colors">
+                        Guía: Qué esperar en tu primera sesión de terapia
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Información sobre confidencialidad, primera sesión, preguntas frecuentes y si no hay química con el terapeuta
+                      </p>
+                    </div>
+                  </div>
+                  <Check className="h-5 w-5 text-destructive opacity-0 group-hover:opacity-100 transition-opacity" />
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </section>
       </main>
 
       <footer className="border-t bg-muted/30 py-6 px-4">

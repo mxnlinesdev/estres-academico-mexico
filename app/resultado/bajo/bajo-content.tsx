@@ -6,7 +6,7 @@ import { ResultCard } from "@/components/ResultCard"
 import { CrisisBanner } from "@/components/CrisisBanner"
 import { CurrentDate } from "@/components/CurrentDate"
 import { PredictResponse } from "@/types/contrato"
-import { RiArrowLeftLine as ArrowLeft, RiBrainLine as Brain, RiCheckboxCircleFill as CheckCircle2 } from "@remixicon/react"
+import { RiArrowLeftLine as ArrowLeft, RiBrainLine as Brain, RiCheckboxCircleFill as CheckCircle2, RiCalendarLine as Calendar, RiBookOpenLine as BookOpen, RiCheckLine as Check } from "@remixicon/react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -86,6 +86,79 @@ export function ResultadoBajoContent({ searchParams }: PageProps) {
             </ul>
           </CardContent>
         </Card>
+
+        {/* Próximos pasos recomendados con recursos disponibles */}
+        <section className="mt-10 space-y-4">
+          <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
+            <Check className="h-5 w-5 text-green-600 dark:text-green-400" />
+            Próximos pasos recomendados
+          </h2>
+          
+          <div className="space-y-3">
+            <Link href="/recursos/lecturas/7-habitos-estudiantes-efectivos" className="block">
+              <Card className="hover:shadow-md transition-shadow border-green-200/50 dark:border-green-800/50 group">
+                <CardContent className="p-4 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                      <BookOpen className="h-5 w-5 text-green-700 dark:text-green-400" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground group-hover:text-green-700 dark:group-hover:text-green-400 transition-colors">
+                        Lectura: 7 Hábitos de estudiantes altamente efectivos
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Basado en Stephen Covey: sé proactivo, comienza con el fin en mente, pon primero lo primero
+                      </p>
+                    </div>
+                  </div>
+                  <Check className="h-5 w-5 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="/recursos/plantillas/planificador-semanal-preventivo" className="block">
+              <Card className="hover:shadow-md transition-shadow border-green-200/50 dark:border-green-800/50 group">
+                <CardContent className="p-4 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                      <Calendar className="h-5 w-5 text-green-700 dark:text-green-400" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground group-hover:text-green-700 dark:group-hover:text-green-400 transition-colors">
+                        Plantilla: Planificador semanal preventivo
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Organiza tu semana con bloques de tiempo para estudio, descanso, ejercicio y vida personal
+                      </p>
+                    </div>
+                  </div>
+                  <Check className="h-5 w-5 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </CardContent>
+              </Card>
+            </Link>
+
+            <Link href="/recursos/checklists/revision-semanal-habitos" className="block">
+              <Card className="hover:shadow-md transition-shadow border-green-200/50 dark:border-green-800/50 group">
+                <CardContent className="p-4 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                      <Check className="h-5 w-5 text-green-700 dark:text-green-400" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground group-hover:text-green-700 dark:group-hover:text-green-400 transition-colors">
+                        Checklist: Revisión semanal de hábitos
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Reflexiona cada semana: ¿qué funcionó? ¿qué ajustar? Mantén el control de tus hábitos
+                      </p>
+                    </div>
+                  </div>
+                  <Check className="h-5 w-5 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </section>
       </main>
 
       <footer className="border-t bg-muted/30 py-6 px-4">
