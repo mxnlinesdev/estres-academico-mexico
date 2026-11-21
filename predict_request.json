@@ -1,0 +1,15 @@
+curl -X 'POST' \
+  'http://127.0.0.1:8000/predict' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "student_id": "test_01",
+  "features": {
+    "sleep_hours_per_day": 5.5,
+    "study_hours_per_week": 16,
+    "social_support_score": 2,
+    "academic_pressure_score": 8,
+    "extracurricular_participation": 0,
+    "gpa_score_avg": 78
+  }
+}'

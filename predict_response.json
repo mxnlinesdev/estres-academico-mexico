@@ -1,0 +1,117 @@
+{
+  "student_id": "test_01",
+  "source": "live",
+  "model_used": "fallback_heuristic",
+  "prediction": {
+    "label": "medio",
+    "level": 1,
+    "message": "Tus respuestas indican un nivel de estrés medio. Revisa los factores señalados.",
+    "confidence": 0.5611,
+    "probabilities": {
+      "bajo": 0.1038,
+      "medio": 0.5611,
+      "alto": 0.335
+    }
+  },
+  "top_factors": [
+    {
+      "name": "social_support_score",
+      "form_field": "apoyo_social",
+      "raw_value": 2,
+      "processed_value": 2,
+      "normalized_value": 0.2,
+      "empuje": 1.2367,
+      "is_top_factor": true,
+      "factor_text": "poco apoyo de familia o amigos",
+      "status": "critico"
+    },
+    {
+      "name": "study_hours_per_week",
+      "form_field": "horas_estudio_semana",
+      "raw_value": 16,
+      "processed_value": 16,
+      "normalized_value": 0.75,
+      "empuje": 1.1145,
+      "is_top_factor": true,
+      "factor_text": "muchas horas de estudio a la semana",
+      "status": "critico"
+    }
+  ],
+  "transformed_data": [
+    {
+      "name": "sleep_hours_per_day",
+      "form_field": "horas_sueno",
+      "raw_value": 5.5,
+      "processed_value": 5.5,
+      "normalized_value": 0.375,
+      "empuje": 0.515,
+      "is_top_factor": false,
+      "factor_text": "duermes pocas horas",
+      "status": "alerta"
+    },
+    {
+      "name": "study_hours_per_week",
+      "form_field": "horas_estudio_semana",
+      "raw_value": 16,
+      "processed_value": 16,
+      "normalized_value": 0.75,
+      "empuje": 1.1145,
+      "is_top_factor": true,
+      "factor_text": "muchas horas de estudio a la semana",
+      "status": "critico"
+    },
+    {
+      "name": "social_support_score",
+      "form_field": "apoyo_social",
+      "raw_value": 2,
+      "processed_value": 2,
+      "normalized_value": 0.2,
+      "empuje": 1.2367,
+      "is_top_factor": true,
+      "factor_text": "poco apoyo de familia o amigos",
+      "status": "critico"
+    },
+    {
+      "name": "academic_pressure_score",
+      "form_field": "presion_academica",
+      "raw_value": 8,
+      "processed_value": 8,
+      "normalized_value": 0.8,
+      "empuje": -1.9413,
+      "is_top_factor": false,
+      "factor_text": "presión académica",
+      "status": "normal"
+    },
+    {
+      "name": "extracurricular_participation",
+      "form_field": "extracurriculares",
+      "raw_value": 0,
+      "processed_value": 0,
+      "normalized_value": 0,
+      "empuje": -0.9871,
+      "is_top_factor": false,
+      "factor_text": "carga de actividades extracurriculares",
+      "status": "normal"
+    },
+    {
+      "name": "gpa_score_avg",
+      "form_field": "promedio_0a10",
+      "raw_value": 78,
+      "processed_value": 78,
+      "normalized_value": 0.78,
+      "empuje": -0.7816,
+      "is_top_factor": false,
+      "factor_text": "promedio bajo",
+      "status": "normal"
+    }
+  ],
+  "summary_vector": [
+    5.5,
+    16,
+    2,
+    8,
+    0,
+    78
+  ],
+  "disclaimer": "Herramienta de apoyo. No es un diagnóstico clínico. Entrenado con datos que no son de México."
+}

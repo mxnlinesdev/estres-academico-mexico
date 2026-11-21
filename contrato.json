@@ -1,0 +1,136 @@
+{
+  "modelo": "modelo_estres",
+  "version": "1.0.0",
+  "semilla": 42,
+  "datos": "Kaggle rishavraj1232/student-early-stress-detection v2, solo source_dataset == 'stress_survey' (1,100 filas)",
+  "orden_entradas": [
+    "sleep_hours_per_day",
+    "study_hours_per_week",
+    "social_support_score",
+    "academic_pressure_score",
+    "extracurricular_participation",
+    "gpa_score_avg"
+  ],
+  "entradas": [
+    {
+      "nombre": "sleep_hours_per_day",
+      "campo_formulario": "horas_sueno",
+      "pregunta": "¿Cuántas horas duermes al día, en promedio?",
+      "unidad": "horas",
+      "min": 4.0,
+      "max": 8.0,
+      "conversion": "valor tal cual; recortar al rango [4, 8]"
+    },
+    {
+      "nombre": "study_hours_per_week",
+      "campo_formulario": "horas_estudio_semana",
+      "pregunta": "¿Cuántas horas estudias a la semana fuera de clase?",
+      "unidad": "horas por semana",
+      "min": 4.0,
+      "max": 20.0,
+      "conversion": "valor tal cual; recortar al rango [4, 20]"
+    },
+    {
+      "nombre": "social_support_score",
+      "campo_formulario": "apoyo_social",
+      "pregunta": "¿Cuánto apoyo sientes de tu familia y amigos?",
+      "unidad": "escala 0–10",
+      "min": 0.0,
+      "max": 10.0,
+      "conversion": "opciones: nada = 0, poco = 3.3, bastante = 6.7, mucho = 10"
+    },
+    {
+      "nombre": "academic_pressure_score",
+      "campo_formulario": "presion_academica",
+      "pregunta": "Del 0 al 10, ¿cuánta presión académica sientes?",
+      "unidad": "escala 0–10",
+      "min": 0.0,
+      "max": 10.0,
+      "conversion": "valor tal cual (entero 0–10)"
+    },
+    {
+      "nombre": "extracurricular_participation",
+      "campo_formulario": "extracurriculares",
+      "pregunta": "¿Participas en actividades extracurriculares?",
+      "unidad": "sí/no",
+      "min": 0.0,
+      "max": 1.0,
+      "conversion": "sí = 1, no = 0"
+    },
+    {
+      "nombre": "gpa_score_avg",
+      "campo_formulario": "promedio_0a10",
+      "pregunta": "¿Cuál es tu promedio aproximado (0 a 10)?",
+      "unidad": "promedio 0–100",
+      "min": 0.0,
+      "max": 100.0,
+      "conversion": "promedio en escala 0–10 multiplicado por 10"
+    }
+  ],
+  "salida": {
+    "tipo": "probabilidades softmax, en el orden de 'clases'",
+    "clases": [
+      {
+        "id": 0,
+        "etiqueta": "bajo",
+        "mensaje": "Tus respuestas indican un nivel de estrés bajo. Sigue cuidando tus hábitos."
+      },
+      {
+        "id": 1,
+        "etiqueta": "medio",
+        "mensaje": "Tus respuestas indican un nivel de estrés medio. Revisa los factores señalados."
+      },
+      {
+        "id": 2,
+        "etiqueta": "alto",
+        "mensaje": "Tus respuestas indican un nivel de estrés alto. Te recomendamos acercarte al área de orientación de tu escuela."
+      }
+    ]
+  },
+  "explicacion": {
+    "descripcion": "empuje = direccion * (x - media) / desv; se muestran los 2 factores con empuje > 0.5",
+    "media": [
+      6.138181209564209,
+      10.477922439575195,
+      6.320346832275391,
+      5.392207622528076,
+      0.4935064911842346,
+      56.10389709472656
+    ],
+    "desv": [
+      1.2391947507858276,
+      4.954872131347656,
+      3.493330240249634,
+      1.3433560132980347,
+      0.49995651841163635,
+      28.014677047729492
+    ],
+    "direccion": [
+      -1.0,
+      1.0,
+      -1.0,
+      -1.0,
+      1.0,
+      -1.0
+    ],
+    "textos": [
+      "duermes pocas horas",
+      "muchas horas de estudio a la semana",
+      "poco apoyo de familia o amigos",
+      "presión académica",
+      "carga de actividades extracurriculares",
+      "promedio bajo"
+    ]
+  },
+  "metricas_prueba": {
+    "accuracy": 0.8606,
+    "F1 macro": 0.8603,
+    "recall alto": 0.9091
+  },
+  "archivos": {
+    "api": "modelo_estres.keras",
+    "movil": "modelo_estres.tflite",
+    "web": "pesos_web.json"
+  },
+  "aviso": "Herramienta de apoyo. No es un diagnóstico clínico. Entrenado con datos que no son de México."
+}
