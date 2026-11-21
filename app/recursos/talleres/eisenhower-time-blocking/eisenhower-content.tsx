@@ -277,7 +277,7 @@ export default function TallerEisenhowerContent() {
               >
                 {index < pasosTimeBlocking.length - 1 ? (
                   <>
-                    Siguiente paso →
+                    Siguiente paso
                     <ArrowRight className="h-4 w-4" />
                   </>
                 ) : (
