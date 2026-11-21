@@ -39,7 +39,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         {...props}
       >
         <Icon className="h-4 w-4" aria-hidden="true" />
-        <div className="grid gap-1 [&>p]:leading-relaxed">{children}</div>
+        <div className="grid gap-1 leading-relaxed">{children}</div>
       </div>
     )
   }
@@ -57,9 +57,9 @@ const AlertTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<H
 )
 AlertTitle.displayName = "AlertTitle"
 
-const AlertDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
+const AlertDescription = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <p
+    <div
       ref={ref}
       className={cn("text-sm [&_p]:leading-relaxed", className)}
       {...props}

@@ -15,7 +15,7 @@ export function Disclaimer({
     <Alert variant={variant} className={className}>
       <AlertDescription className="flex items-start gap-2 text-sm">
         <Info className="h-4 w-4 flex-shrink-0 mt-0.5" aria-hidden="true" />
-        <div>
+        <div className="flex-1">
           <p className="font-medium">
             <strong>Herramienta de apoyo.</strong> No es un diagnóstico clínico.
           </p>
@@ -42,7 +42,7 @@ export function ModelDisclaimer({ className }: { className?: string }) {
     <Alert variant="info" className={cn("border-primary/30 bg-primary/5", className)}>
       <AlertDescription className="flex items-start gap-2 text-sm">
         <Info className="h-4 w-4 flex-shrink-0 mt-0.5 text-primary" aria-hidden="true" />
-        <div>
+        <div className="flex-1">
           <p className="font-medium text-primary">
             <strong>Limitaciones del modelo:</strong>
           </p>
