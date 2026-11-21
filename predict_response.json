@@ -1,16 +1,16 @@
 {
   "student_id": "test_01",
   "source": "live",
-  "model_used": "fallback_heuristic",
+  "model_used": "keras:modelo_estres.keras",
   "prediction": {
     "label": "medio",
     "level": 1,
     "message": "Tus respuestas indican un nivel de estrés medio. Revisa los factores señalados.",
-    "confidence": 0.5611,
+    "confidence": 0.4072,
     "probabilities": {
-      "bajo": 0.1038,
-      "medio": 0.5611,
-      "alto": 0.335
+      "bajo": 0.2507,
+      "medio": 0.4072,
+      "alto": 0.3421
     }
   },
   "top_factors": [
@@ -96,7 +96,7 @@
     {
       "name": "gpa_score_avg",
       "form_field": "promedio_0a10",
-      "raw_value": 78,
+      "raw_value": 7.8,
       "processed_value": 78,
       "normalized_value": 0.78,
       "empuje": -0.7816,

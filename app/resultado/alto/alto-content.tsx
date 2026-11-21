@@ -1,24 +1,23 @@
 "use client"
 
 import { notFound } from "next/navigation"
+import { use } from "react"
 import { ResultCard } from "@/components/ResultCard"
 import { CrisisBanner } from "@/components/CrisisBanner"
-import { Disclaimer } from "@/components/Disclaimer"
 import { CurrentDate } from "@/components/CurrentDate"
 import { PredictResponse } from "@/types/contrato"
 import { RiArrowLeftLine as ArrowLeft, RiBrainLine as Brain, RiAlertLine as AlertCircle, RiPhoneLine as Phone, RiShieldLine as Shield, RiUserReceivedLine as UserCheck } from "@remixicon/react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Separator } from "@/components/ui/separator"
 
 interface PageProps {
   searchParams: Promise<{ prediction: string }>
 }
 
-export async function ResultadoAltoContent({ searchParams }: PageProps) {
-  const params = await searchParams
+export function ResultadoAltoContent({ searchParams }: PageProps) {
+  const params = use(searchParams)
   
   let response: PredictResponse
   try {
@@ -34,7 +33,6 @@ export async function ResultadoAltoContent({ searchParams }: PageProps) {
   const handleAction = (action: string) => {
     console.log(`Acción "${action}" clickeada - placeholder`)
     if (action === 'Consulta a un experto') {
-      // Podría abrir modal con recursos de contacto
       alert('Placeholder: Aquí iría un directorio de psicólogos, orientadores escolares, y líneas de crisis.')
     }
   }
@@ -56,19 +54,17 @@ export async function ResultadoAltoContent({ searchParams }: PageProps) {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        {/* Banner de crisis prominente */}
-        <Alert variant="destructive" className="mb-6 border-2">
-          <AlertTitle className="flex items-center gap-2">
-            <AlertCircle className="h-5 w-5" />
-            Nivel de estrés ALTO detectado
-          </AlertTitle>
-          <AlertDescription className="mt-2">
-            <p className="font-medium mb-2">{response.prediction.message}</p>
+      <main className="max-w-3xl mx-auto px-4 py-8">
+        <Card className="mb-6 border-2 border-destructive bg-destructive/5">
+          <CardHeader>
+            <CardTitle className="text-xl text-destructive">Nivel de estrés ALTO detectado</CardTitle>
+            <CardDescription>{response.prediction.message}</CardDescription>
+          </CardHeader>
+          <CardContent className="mt-4">
             <div className="flex flex-col sm:flex-row gap-3">
               <a
                 href="tel:8009112000"
-                className="flex items-center justify-center gap-2 bg-destructive text-destructive-foreground px-6 py-3 rounded-lg font-semibold text-lg hover:bg-destructive/90 transition-colors"
+                className="flex items-center justify-center gap-2 bg-destructive text-white px-6 py-3 font-semibold text-lg hover:bg-destructive/90 transition-colors"
               >
                 <Phone className="h-6 w-6" />
                 <span>Llamar 800 911 2000</span>
@@ -79,31 +75,22 @@ export async function ResultadoAltoContent({ searchParams }: PageProps) {
                 Buscar orientación profesional
               </Button>
             </div>
-          </AlertDescription>
-        </Alert>
+          </CardContent>
+        </Card>
 
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-destructive/10 mb-4">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-destructive/10 mb-4">
             <AlertCircle className="h-10 w-10 text-destructive" />
           </div>
           <h1 className="text-3xl font-bold text-destructive mb-2">
             Nivel de estrés: ALTO
           </h1>
-          <div className="mt-4 flex items-center justify-center gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Brain className="h-4 w-4" />
-              Confianza: {(response.prediction.confidence * 100).toFixed(1)}%
-            </span>
-            <span className="flex items-center gap-1">
-              Modelo: {response.model_used}
-            </span>
-          </div>
+          
         </div>
 
         <ResultCard response={response} onActionClick={handleAction} />
 
-        {/* Recursos de crisis expandidos */}
-        <Card className="border-destructive/30 bg-destructive/5">
+        <Card className="mt-10 border-destructive/30 bg-destructive/5">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-destructive">
               <Shield className="h-5 w-5" />
@@ -148,8 +135,7 @@ export async function ResultadoAltoContent({ searchParams }: PageProps) {
           </CardContent>
         </Card>
 
-        {/* Recomendaciones específicas */}
-        <Card className="border-destructive/20">
+        <Card className="mt-10 border-destructive/20">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <AlertCircle className="h-5 w-5 text-destructive" />
@@ -167,8 +153,6 @@ export async function ResultadoAltoContent({ searchParams }: PageProps) {
             </ol>
           </CardContent>
         </Card>
-
-        <Disclaimer showModelWarning={true} />
       </main>
 
       <footer className="border-t bg-muted/30 py-6 px-4">

@@ -1,9 +1,9 @@
 "use client"
 
 import { notFound } from "next/navigation"
+import { use } from "react"
 import { ResultCard } from "@/components/ResultCard"
 import { CrisisBanner } from "@/components/CrisisBanner"
-import { Disclaimer } from "@/components/Disclaimer"
 import { CurrentDate } from "@/components/CurrentDate"
 import { PredictResponse } from "@/types/contrato"
 import { RiArrowLeftLine as ArrowLeft, RiBrainLine as Brain, RiAlertLine as AlertCircle } from "@remixicon/react"
@@ -15,8 +15,8 @@ interface PageProps {
   searchParams: Promise<{ prediction: string }>
 }
 
-export async function ResultadoMedioContent({ searchParams }: PageProps) {
-  const params = await searchParams
+export function ResultadoMedioContent({ searchParams }: PageProps) {
+  const params = use(searchParams)
   
   let response: PredictResponse
   try {
@@ -50,9 +50,9 @@ export async function ResultadoMedioContent({ searchParams }: PageProps) {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
+      <main className="max-w-3xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-yellow-100 dark:bg-yellow-900/30 mb-4">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-yellow-100 dark:bg-yellow-900/30 mb-4">
             <AlertCircle className="h-10 w-10 text-yellow-600 dark:text-yellow-400" />
           </div>
           <h1 className="text-3xl font-bold text-yellow-600 dark:text-yellow-400 mb-2">
@@ -61,20 +61,12 @@ export async function ResultadoMedioContent({ searchParams }: PageProps) {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {response.prediction.message}
           </p>
-          <div className="mt-4 flex items-center justify-center gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Brain className="h-4 w-4" />
-              Confianza: {(response.prediction.confidence * 100).toFixed(1)}%
-            </span>
-            <span className="flex items-center gap-1">
-              Modelo: {response.model_used}
-            </span>
-          </div>
+          
         </div>
 
         <ResultCard response={response} onActionClick={handleAction} />
 
-        <Card className="border-yellow-200/50 dark:border-yellow-800/50">
+        <Card className="mt-10 border-yellow-200/50 dark:border-yellow-800/50">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-yellow-700 dark:text-yellow-400">
               <AlertCircle className="h-5 w-5" />
@@ -94,8 +86,6 @@ export async function ResultadoMedioContent({ searchParams }: PageProps) {
             </ul>
           </CardContent>
         </Card>
-
-        <Disclaimer showModelWarning={true} />
       </main>
 
       <footer className="border-t bg-muted/30 py-6 px-4">

@@ -1,7 +1,6 @@
 import { Metadata } from "next"
 import { StressForm } from "@/components/StressForm"
 import { CrisisBanner } from "@/components/CrisisBanner"
-import { Disclaimer } from "@/components/Disclaimer"
 import { RiArrowLeftLine as ArrowLeft, RiBrainLine as Brain } from "@remixicon/react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -34,10 +33,11 @@ export default function EvaluacionPage() {
         <StressForm />
       </main>
 
-      {/* Footer disclaimer */}
       <footer className="border-t bg-muted/30 py-6 px-4">
-        <div className="max-w-2xl mx-auto">
-          <Disclaimer showModelWarning={true} />
+        <div className="max-w-2xl mx-auto text-center text-sm text-muted-foreground">
+          <p className="text-destructive font-medium">
+            ¿Necesitas ayuda? Línea de la Vida: <a href="tel:8009112000" className="underline">800 911 2000</a> (24/7)
+          </p>
         </div>
       </footer>
     </div>

@@ -9,7 +9,7 @@ interface StatCardProps {
 }
 
 // Todas las stats usan color destructivo (rojo) por ser estadísticas graves de salud mental
-const ICON_STYLE = "mx-auto mb-3 h-12 w-12 flex items-center justify-center rounded-full bg-destructive/10 text-destructive"
+const ICON_STYLE = "mx-auto mb-3 h-12 w-12 flex items-center justify-center bg-destructive/10 text-destructive"
 
 export function StatCard({ icon: Icon, value, label, description }: StatCardProps) {
   return (

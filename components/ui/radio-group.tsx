@@ -44,8 +44,9 @@ const RadioGroupItem = React.forwardRef<HTMLLabelElement, RadioGroupItemProps>(
       <label
         ref={ref}
         className={cn(
-          "flex items-center gap-3 p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors",
+          "flex items-center gap-3 p-4 border cursor-pointer transition-colors",
           checked && "border-primary bg-primary/5",
+          !checked && "hover:bg-accent/50",
           className
         )}
         onClick={onChange}
@@ -53,7 +54,7 @@ const RadioGroupItem = React.forwardRef<HTMLLabelElement, RadioGroupItemProps>(
       >
         <div
           className={cn(
-            "relative flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
+            "relative flex h-5 w-5 shrink-0 items-center justify-center border-2 transition-colors",
             checked ? "border-primary bg-primary" : "border-input bg-background"
           )}
         >

@@ -1,9 +1,9 @@
 "use client"
 
 import { notFound } from "next/navigation"
+import { use } from "react"
 import { ResultCard } from "@/components/ResultCard"
 import { CrisisBanner } from "@/components/CrisisBanner"
-import { Disclaimer } from "@/components/Disclaimer"
 import { CurrentDate } from "@/components/CurrentDate"
 import { PredictResponse } from "@/types/contrato"
 import { RiArrowLeftLine as ArrowLeft, RiBrainLine as Brain, RiCheckboxCircleFill as CheckCircle2 } from "@remixicon/react"
@@ -15,8 +15,8 @@ interface PageProps {
   searchParams: Promise<{ prediction: string }>
 }
 
-export async function ResultadoBajoContent({ searchParams }: PageProps) {
-  const params = await searchParams
+export function ResultadoBajoContent({ searchParams }: PageProps) {
+  const params = use(searchParams)
   
   let response: PredictResponse
   try {
@@ -25,14 +25,12 @@ export async function ResultadoBajoContent({ searchParams }: PageProps) {
     notFound()
   }
 
-  // Verificar que sea nivel bajo
   if (response.prediction.label !== 'bajo') {
     notFound()
   }
 
   const handleAction = (action: string) => {
     console.log(`Acción "${action}" clickeada - placeholder`)
-    // TODO: Implementar navegación real a recursos
   }
 
   return (
@@ -52,10 +50,9 @@ export async function ResultadoBajoContent({ searchParams }: PageProps) {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        {/* Header de resultado */}
+      <main className="max-w-3xl mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 dark:bg-green-900/30 mb-4">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 dark:bg-green-900/30 mb-4">
             <CheckCircle2 className="h-10 w-10 text-green-600 dark:text-green-400" />
           </div>
           <h1 className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
@@ -64,26 +61,16 @@ export async function ResultadoBajoContent({ searchParams }: PageProps) {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {response.prediction.message}
           </p>
-          <div className="mt-4 flex items-center justify-center gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Brain className="h-4 w-4" />
-              Confianza: {(response.prediction.confidence * 100).toFixed(1)}%
-            </span>
-            <span className="flex items-center gap-1">
-              Modelo: {response.model_used}
-            </span>
-          </div>
+          
         </div>
 
-        {/* Tarjeta principal de resultado */}
         <ResultCard response={response} onActionClick={handleAction} />
 
-        {/* Mensaje motivacional */}
-        <Card className="border-green-200/50 dark:border-green-800/50">
+        <Card className="mt-10 border-green-200/50 dark:border-green-800/50">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-green-700 dark:text-green-400">
               <CheckCircle2 className="h-5 w-5" />
-              ¡Excelente! Mantén estos hábitos
+              Excelente. Mantén estos hábitos
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-sm">
@@ -99,9 +86,6 @@ export async function ResultadoBajoContent({ searchParams }: PageProps) {
             </ul>
           </CardContent>
         </Card>
-
-        {/* Disclaimer */}
-        <Disclaimer showModelWarning={true} />
       </main>
 
       <footer className="border-t bg-muted/30 py-6 px-4">

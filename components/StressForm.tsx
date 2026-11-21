@@ -21,10 +21,10 @@ import { toast } from "@/components/ui/use-toast"
 import { CONTRATO_RANGOS, APOYO_SOCIAL_MAP } from "@/types/contrato"
 
 const APOYO_SOCIAL_OPTIONS = [
-  { value: 'nada', label: 'Nada', description: '0 - Sin apoyo' },
-  { value: 'poco', label: 'Poco', description: '3.3 - Apoyo limitado' },
-  { value: 'bastante', label: 'Bastante', description: '6.7 - Buen apoyo' },
-  { value: 'mucho', label: 'Mucho', description: '10 - Apoyo total' },
+  { value: 'nada', label: 'Nada', description: 'Sin apoyo' },
+  { value: 'poco', label: 'Poco', description: 'Apoyo limitado' },
+  { value: 'bastante', label: 'Bastante', description: 'Buen apoyo' },
+  { value: 'mucho', label: 'Mucho', description: 'Apoyo total' },
 ] as const
 
 const EXTRACURRICULAR_OPTIONS = [
@@ -36,7 +36,7 @@ const QUESTIONS = [
   {
     id: 'horas_sueno',
     label: '¿Cuántas horas duermes al día, en promedio?',
-    description: `Rango: ${CONTRATO_RANGOS.horas_sueno.min} - ${CONTRATO_RANGOS.horas_sueno.max} horas`,
+    description: '',
     min: CONTRATO_RANGOS.horas_sueno.min,
     max: CONTRATO_RANGOS.horas_sueno.max,
     step: 0.5,
@@ -44,7 +44,7 @@ const QUESTIONS = [
   {
     id: 'horas_estudio_semana',
     label: '¿Cuántas horas estudias a la semana fuera de clase?',
-    description: `Rango: ${CONTRATO_RANGOS.horas_estudio_semana.min} - ${CONTRATO_RANGOS.horas_estudio_semana.max} horas/semana`,
+    description: '',
     min: CONTRATO_RANGOS.horas_estudio_semana.min,
     max: CONTRATO_RANGOS.horas_estudio_semana.max,
     step: 1,
@@ -52,12 +52,12 @@ const QUESTIONS = [
   {
     id: 'apoyo_social',
     label: '¿Cuánto apoyo sientes de tu familia y amigos?',
-    description: 'Escala: Nada (0) → Poco (3.3) → Bastante (6.7) → Mucho (10)',
+    description: '',
   },
   {
     id: 'presion_academica',
-    label: 'Del 0 al 10, ¿cuánta presión académica sientes?',
-    description: `Rango: ${CONTRATO_RANGOS.presion_academica.min} - ${CONTRATO_RANGOS.presion_academica.max} (entero)`,
+    label: 'Del 0 al 10, ¿qué tan constante te sientes en tu ritmo académico?',
+    description: '',
     min: CONTRATO_RANGOS.presion_academica.min,
     max: CONTRATO_RANGOS.presion_academica.max,
     step: 1,
@@ -65,12 +65,12 @@ const QUESTIONS = [
   {
     id: 'extracurriculares',
     label: '¿Participas en actividades extracurriculares?',
-    description: 'Sí = 1, No = 0',
+    description: '',
   },
   {
     id: 'promedio_0a10',
     label: '¿Cuál es tu promedio aproximado (0 a 10)?',
-    description: `Rango: ${CONTRATO_RANGOS.promedio_0a10.min} - ${CONTRATO_RANGOS.promedio_0a10.max} (se multiplica ×10 para el modelo)`,
+    description: '',
     min: CONTRATO_RANGOS.promedio_0a10.min,
     max: CONTRATO_RANGOS.promedio_0a10.max,
     step: 0.1,
@@ -166,7 +166,7 @@ export function StressForm() {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={(e) => e.preventDefault()}>
           <Card>
             <CardHeader className="pb-4">
               <CardTitle className="text-xl">{currentQuestion.label}</CardTitle>
@@ -231,7 +231,7 @@ export function StressForm() {
                     value={watchedValues.apoyo_social}
                   >
                     {APOYO_SOCIAL_OPTIONS.map((option) => (
-                      <RadioGroupItem key={option.value} value={option.value} className="p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors">
+                      <RadioGroupItem key={option.value} value={option.value}>
                         <div className="flex-1 text-left">
                           <div className="font-medium">{option.label}</div>
                           <div className="text-sm text-muted-foreground">{option.description}</div>
@@ -275,7 +275,7 @@ export function StressForm() {
                     value={watchedValues.extracurriculares}
                   >
                     {EXTRACURRICULAR_OPTIONS.map((option) => (
-                      <RadioGroupItem key={option.value} value={option.value} className="p-4 border rounded-lg cursor-pointer hover:bg-accent transition-colors">
+                      <RadioGroupItem key={option.value} value={option.value}>
                         <div className="flex-1 text-left">
                           <div className="font-medium">{option.label}</div>
                           <div className="text-sm text-muted-foreground">{option.description}</div>
@@ -307,9 +307,6 @@ export function StressForm() {
                     </span>
                     <span>{currentQuestion.max}</span>
                   </div>
-                  <p className="text-xs text-muted-foreground">
-                    Valor para el modelo: {(Number(watchedValues.promedio_0a10 ?? currentQuestion.min) * 10).toFixed(0)} (×10)
-                  </p>
                   {errors.promedio_0a10 && (
                     <p className="text-sm text-destructive error-message" role="alert" aria-live="polite">{errors.promedio_0a10.message}</p>
                   )}
@@ -333,7 +330,7 @@ export function StressForm() {
                       Siguiente
                     </Button>
                   ) : (
-                    <Button type="submit" disabled={isSubmitting}>
+                    <Button type="button" disabled={isSubmitting} onClick={handleSubmit(onSubmit)}>
                       {isSubmitting ? 'Evaluando...' : 'Obtener resultado'}
                     </Button>
                   )}
@@ -341,13 +338,6 @@ export function StressForm() {
               </div>
             </CardContent>
           </Card>
-
-          {/* Disclaimer */}
-          <p className="text-xs text-center text-muted-foreground mt-6 max-w-xl mx-auto">
-            <strong>Herramienta de apoyo.</strong> No es un diagnóstico clínico. 
-            El modelo fue entrenado con datos que no son de México. 
-            Si estás en crisis, contacta a la Línea de la Vida: <strong>800 911 2000</strong> (24/7).
-          </p>
         </form>
       </div>
     </div>
